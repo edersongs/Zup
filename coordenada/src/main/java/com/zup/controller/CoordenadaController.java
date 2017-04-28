@@ -42,11 +42,11 @@ public class CoordenadaController {
 	public ResponseEntity<List<Coordenada>> listarPorProximidade(int posicaoX, int posicaoY, int distanciaMax) {
 		List<Coordenada> pontoProximos = new ArrayList<Coordenada>();
 		repositorioCoordenada.findAll().forEach(c -> {
-				if (this.coordenada.calcularDistanciaEntrePontos(posicaoX, c.getPosicaoX(), posicaoY, c.getPosicaoY()) < distanciaMax) {
-					pontoProximos.add(c);
-				}
+			if (this.coordenada.calcularDistanciaEntrePontos(posicaoX, c.getPosicaoX(), posicaoY,
+					c.getPosicaoY()) < distanciaMax) {
+				pontoProximos.add(c);
 			}
-		);
+		});
 		return new ResponseEntity<List<Coordenada>>(pontoProximos, HttpStatus.OK);
 	}
 	
