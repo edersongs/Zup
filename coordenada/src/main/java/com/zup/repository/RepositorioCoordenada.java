@@ -22,6 +22,12 @@ import com.zup.model.Coordenada;
 public interface RepositorioCoordenada extends JpaRepository<Coordenada, Long> {
 
 	/**
+	 * 
+	 * Nova solução para encontrar as cordenadas pela distância maxima.
+	 * Esse solução não faz um findAll direto na base.
+	 * 
+	 * Não está sendo usada por falta de prazo para teste!
+	 * 
 	 * Método filtra somente as Coordenas de acordo com o limite maximo e minimo que cada posição pode assumir de acordo com a distância informada!
 	 * Evitando um findAll na base de todas coordenadas.
 	 * 

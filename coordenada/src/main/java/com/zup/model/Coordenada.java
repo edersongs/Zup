@@ -23,7 +23,9 @@ import org.springframework.context.annotation.Configuration;
 @Entity
 @Configuration
 public class Coordenada {
-	
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int codigo;
 	@Min(value=0, message="Posicao X deve ser Positiva")
 	private int posicaoX;
@@ -40,8 +42,6 @@ public class Coordenada {
 		this.posicaoY = posicaoY;
 	}
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public int getCodigo() {
 		return codigo;
 	}
@@ -82,10 +82,29 @@ public class Coordenada {
 		return Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2));
 	}
 	
+	/**
+	 * Nova solução para encontrar as cordenadas pela distância maxima.
+	 * Esse solução não faz um findAll direto na base.
+	 * 
+	 * Não está sendo usada por falta de prazo para teste!
+	 * @param posicao
+	 * @param distancia
+	 * @return
+	 */
 	public int calcularValorMaximoPosicaoPorDistancia(int posicao, int distancia) {
 		return posicao + distancia;
 	}
 	
+	/**
+	 * Nova solução para encontrar as cordenadas pela distância maxima.
+	 * Esse solução não faz um findAll direto na base.
+	 * 
+	 * Não está sendo usada por falta de prazo para teste!
+	 * 
+	 * @param posicao
+	 * @param distancia
+	 * @return
+	 */
 	public int calcularValorMinimoPosicaoPorDistancia(int posicao, int distancia) {
 		return posicao - distancia;
 	}
