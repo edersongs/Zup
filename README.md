@@ -10,7 +10,9 @@
 
 * Spring Boot
 * FlyWay
-* Database h2database
+* Database h2database (Embedded)
+* Java 8
+* Maven
 
 # Ferramenta para Testes
 
@@ -18,10 +20,14 @@ Foi utilizado para os testes dos serviços a ferramenta Postman https://chrome.g
 
 # Execução dos Testes
 
-1. (Extra) Caso deseje cadastrar todos os pontos descritos no desafio de uma só vez, execute o recurso `localhost:8080/api/salvarPadrao` com verbo http **GET**. Com isso todas Posições sitadas como exemplo no desafio serão cadastradas.
+1. Para o build da aplicação, execute a Classe **CoordenadaApplication** como um Java Application.
 
-2. Para salvar Nome do POI, coordenadaX, coordenadaY e distância Máxima, execute o recurso `localhost:8080/api/salvar` com verbo http **POST**. Esse recurso consome um **APPLICATION_JSON** e recebe como parametro um objeto chamado Coordenada. Para execução desse recurso será necessário passar um **APPLICATION_JSON** no corpo da requisição com os valores de **"nome, posicaoX e posicaoY"** .
+2. (Extra) Caso deseje cadastrar todos os pontos descritos no desafio de uma só vez, execute o recurso `localhost:8080/api/salvarPadrao` com verbo http **GET**. Com isso todas Posições sitadas como exemplo no desafio serão cadastradas.
 
-3. Para listar todas as Coordenadas salvas, execute o recurso `localhost:8080/api/listarCoordenadas`
+3. Para salvar Nome do POI, coordenadaX, coordenadaY e distância Máxima, execute o recurso `localhost:8080/api/salvar` com verbo http **POST**. Esse recurso consome um **APPLICATION_JSON** e recebe como parametro um objeto chamado Coordenada. Para execução desse recurso será necessário passar um **APPLICATION_JSON** no corpo da requisição com os valores de **"nome, posicaoX e posicaoY"** .
 
-4. Para retornar todas as coordenadas cadastradas que tenham uma distância menor ou igual a distância máxima. Execute o recurso `localhost:8080/api/proximidades` com verbo http **GET**. Os parâmetros **"posicaoX,posicaoY e distanciaMax"** devem ser passados no Cabeçalho da requisição.
+4. Para listar todas as Coordenadas salvas, execute o recurso `localhost:8080/api/listarCoordenadas`
+
+5. Para retornar todas as coordenadas cadastradas que tenham uma distância menor ou igual a distância máxima. Execute o recurso `localhost:8080/api/proximidades` com verbo http **GET**. Os parâmetros **"posicaoX,posicaoY e distanciaMax"** devem ser passados no Cabeçalho da requisição.
+
+6. (Extra) Para obter o mesmo resultado do item **5** com uma nova abordagem, execute o recurso `localhost:8080/api/proximidades2` com verbo http **GET**
