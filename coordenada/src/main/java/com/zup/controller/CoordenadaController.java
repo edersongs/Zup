@@ -5,6 +5,7 @@ package com.zup.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,16 +39,43 @@ public class CoordenadaController {
 		return new ResponseEntity<List<Coordenada>>(repositorioCoordenada.findAll(), HttpStatus.OK);
 	}
 	
+	/**
+	 * Lista as coordenadas cadastradas que estão mais próximas de acordo com a distância informada.
+	 * 
+	 * @param posicaoX
+	 * @param posicaoY
+	 * @param distanciaMax
+	 * @return
+	 */
 	@GetMapping("/proximidades")
 	public ResponseEntity<List<Coordenada>> listarPorProximidade(int posicaoX, int posicaoY, int distanciaMax) {
-		List<Coordenada> pontoProximos = new ArrayList<Coordenada>();
-		repositorioCoordenada.findAll().forEach(c -> {
-			if (this.coordenada.calcularDistanciaEntrePontos(posicaoX, c.getPosicaoX(), posicaoY,
-					c.getPosicaoY()) < distanciaMax) {
-				pontoProximos.add(c);
-			}
-		});
+		List<Coordenada> pontoProximos = repositorioCoordenada.findAll()
+				.stream()
+				.filter(c -> this.coordenada.calcularDistanciaEntrePontos(posicaoX, c.getPosicaoX(), posicaoY, c.getPosicaoY()) <= distanciaMax)
+				.collect(Collectors.toList());
+		
 		return new ResponseEntity<List<Coordenada>>(pontoProximos, HttpStatus.OK);
+	}
+	
+	/**
+	 * Solução para encontrar as coordenadas cadastradas que estão mais próximas, de acordo com a distância informada.
+	 * Essa solução não realiza um findAll na base para realizar o calculo das coordenadas como é realizado no método listarPorProximidade.
+	 * 
+	 * @param posicaoX
+	 * @param posicaoY
+	 * @param distanciaMax
+	 * @return
+	 */
+	@GetMapping("/proximidades2")
+	private List<Coordenada> getCoordenadasPorDistancia(int posicaoX, int posicaoY, int distanciaMax) {
+		return repositorioCoordenada
+				.proximidade(this.coordenada.calcularValorMaximoPosicaoPorDistancia(posicaoX, distanciaMax),
+						this.coordenada.calcularValorMinimoPosicaoPorDistancia(posicaoX, distanciaMax),
+						this.coordenada.calcularValorMaximoPosicaoPorDistancia(posicaoY, distanciaMax),
+						this.coordenada.calcularValorMinimoPosicaoPorDistancia(posicaoY, distanciaMax))
+				.stream()
+				.filter(c -> this.coordenada.calcularDistanciaEntrePontos(posicaoX, c.getPosicaoX(), posicaoY,	c.getPosicaoY()) <= distanciaMax)
+				.collect(Collectors.toList());
 	}
 	
 	/**
@@ -56,7 +84,7 @@ public class CoordenadaController {
 	 * @return
 	 */
 	@GetMapping("/salvarPadrao")
-	public void salvarPadrao() {
+	public String salvarPadrao() {
 		List<Coordenada> coordenadas = new ArrayList<Coordenada>();
 		coordenadas.add(new Coordenada("Lanchonete", 27, 12));
 		coordenadas.add(new Coordenada("Posto", 31, 18));
@@ -66,6 +94,7 @@ public class CoordenadaController {
 		coordenadas.add(new Coordenada("Supermercado", 23, 6));
 		coordenadas.add(new Coordenada("Churrascaria", 28, 2));
 		coordenadas.forEach(c -> this.salvarPontosInteresse(c));
+		return "Salvo!";
 	}
 	
 	@PostMapping(path ="/salvar", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -73,30 +102,5 @@ public class CoordenadaController {
 	public String salvarPontosInteresse(@RequestBody Coordenada coordenada) {
 		this.repositorioCoordenada.save(coordenada);
 		return "Salvo com Sucesso!";
-	}
-	
-	/**
-	 * Nova solução para encontrar as cordenadas pela distância maxima.
-	 * Esse solução não faz um findAll direto na base.
-	 * 
-	 * Não está sendo usada por falta de prazo para teste!
-	 * 
-	 * @param posicaoX
-	 * @param posicaoY
-	 * @param distanciaMax
-	 * @return
-	 */
-	private List<Coordenada> getCoordenadasPorDistancia(int posicaoX, int posicaoY, int distanciaMax) {
-		List<Coordenada> pontoProximos = new ArrayList<Coordenada>();
-		repositorioCoordenada.proximidade(
-				this.coordenada.calcularValorMaximoPosicaoPorDistancia(posicaoX, distanciaMax), 
-				this.coordenada.calcularValorMinimoPosicaoPorDistancia(posicaoX, distanciaMax), 
-				this.coordenada.calcularValorMaximoPosicaoPorDistancia(posicaoY, distanciaMax), 
-				this.coordenada.calcularValorMinimoPosicaoPorDistancia(posicaoY, distanciaMax))
-			.forEach(c -> {
-				if(this.coordenada.calcularDistanciaEntrePontos(posicaoX, c.getPosicaoX(), posicaoY, c.getPosicaoY()) < distanciaMax);
-				pontoProximos.add(c);
-			});
-		return pontoProximos;
 	}
 }
