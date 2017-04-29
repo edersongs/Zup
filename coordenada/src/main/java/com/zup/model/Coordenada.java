@@ -85,8 +85,7 @@ public class Coordenada {
 	/**
 	 * Nova solução para encontrar as cordenadas pela distância maxima.
 	 * Esse solução não faz um findAll direto na base.
-	 * 
-	 * Não está sendo usada por falta de prazo para teste!
+	 *  
 	 * @param posicao
 	 * @param distancia
 	 * @return
@@ -98,9 +97,7 @@ public class Coordenada {
 	/**
 	 * Nova solução para encontrar as cordenadas pela distância maxima.
 	 * Esse solução não faz um findAll direto na base.
-	 * 
-	 * Não está sendo usada por falta de prazo para teste!
-	 * 
+	 *  
 	 * @param posicao
 	 * @param distancia
 	 * @return
