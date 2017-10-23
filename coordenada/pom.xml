@@ -10,10 +10,11 @@
 
 	<name>coordenada</name>
 	<description>Teste Processo Seletivo Zup</description>
-	
+        
+
 	<developers>
 		<developer>
-			<name>Éderson Gervásio</name>
+			<name>Éderson Gervásio Six</name>
 		</developer>
 	</developers>
 
@@ -29,6 +30,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<apache-commons.version>3.6</apache-commons.version>
+		<gson.version>2.8.2</gson.version>
 	</properties>
 
 	<dependencies>
@@ -73,6 +75,12 @@
 		    <groupId>org.apache.commons</groupId>
 		    <artifactId>commons-lang3</artifactId>
 		    <version>${apache-commons.version}</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.google.code.gson</groupId>
+		    <artifactId>gson</artifactId>
+		    <version>${gson.version}</version>
 		</dependency>
 	</dependencies>
 

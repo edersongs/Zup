@@ -18,6 +18,7 @@ import com.zup.service.exception.CoordenaServiceException;
 
 /**
  * @author Éderson Gervásio
+ * 		  edersongervasiosilva@gmail.com
  *
  */
 @RestControllerAdvice

@@ -17,7 +17,6 @@ import org.springframework.context.annotation.Configuration;
 /**
  * @author Éderson Gervásio
  * 		   edersongervasiosilva@gmail.com
- * 		   26/04/2017  
  *
  */
 @Entity

@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.zup.model.Coordenada;
 import com.zup.repository.RepositorioCoordenada;
+import com.zup.service.exception.CoordenaServiceException;
+import com.zup.service.interfaces.CoordenadaService;
 
 /**
  * @author Éderson Gervásio
@@ -28,8 +31,9 @@ import com.zup.repository.RepositorioCoordenada;
 @RequestMapping(value="/coordenadas")
 public class CoordenadaController {
 
-	@Autowired private Coordenada coordenada;
 	@Autowired private RepositorioCoordenada repositorioCoordenada;
+	@Autowired private CoordenadaService coordenadaService;
+	@Autowired private Coordenada coordenada;
 	
 	/**
 	 * 
@@ -41,7 +45,7 @@ public class CoordenadaController {
 	@GetMapping
 	public ResponseEntity<List<Coordenada>> listarTodasCoordenadas() {
 		
-		return new ResponseEntity<List<Coordenada>>(repositorioCoordenada.findAll(), HttpStatus.BAD_GATEWAY);
+		return new ResponseEntity<List<Coordenada>>(repositorioCoordenada.findAll(), HttpStatus.OK);
 	}
 	
 	/**
@@ -51,15 +55,15 @@ public class CoordenadaController {
 	 * 
 	 * @param posicaoX
 	 * @param posicaoY
-	 * @param distanciaMax
+	 * @param distanciaMaxima
 	 * @return
 	 */
-	@GetMapping("/proximidades")
-	public ResponseEntity<List<Coordenada>> listarPorProximidade(int posicaoX, int posicaoY, int distanciaMax) {
+	@GetMapping("/proximidades/{posicaoX}/{posicaoY}/{distanciaMaxima}")
+	public ResponseEntity<List<Coordenada>> listarPorProximidade(@PathVariable int posicaoX, @PathVariable int posicaoY, @PathVariable int distanciaMaxima) {
 		
 		List<Coordenada> pontoProximos = repositorioCoordenada.findAll()
 				.stream()
-				.filter(c -> coordenada.calcularDistanciaEntrePontos(posicaoX, c.getPosicaoX(), posicaoY, c.getPosicaoY()) <= distanciaMax)
+				.filter(c -> coordenada.calcularDistanciaEntrePontos(posicaoX, c.getPosicaoX(), posicaoY, c.getPosicaoY()) <= distanciaMaxima)
 				.collect(Collectors.toList());
 		
 		return new ResponseEntity<List<Coordenada>>(pontoProximos, HttpStatus.OK);
@@ -95,9 +99,12 @@ public class CoordenadaController {
 	 * 
 	 * @param coordenada
 	 * @return
+	 * @throws CoordenaServiceException 
 	 */
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<?> salvarPontosInteresse(@RequestBody Coordenada coordenada) {
+	public ResponseEntity<?> salvarPontosInteresse(@RequestBody Coordenada coordenada) throws CoordenaServiceException {
+		
+		coordenadaService.salvarCoordenada(coordenada);
 		
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}

@@ -15,7 +15,6 @@ import com.zup.model.Coordenada;
 /**
  * @author Éderson Gervásio
  * 		   edersongervasiosilva@gmail.com
- * 		   26/04/2017  
  *
  */
 @Repository

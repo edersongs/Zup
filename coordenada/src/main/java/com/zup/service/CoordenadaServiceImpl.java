@@ -13,6 +13,7 @@ import com.zup.service.interfaces.CoordenadaService;
 
 /**
  * @author Éderson Gervásio
+ * 		edersongervasiosilva@gmail.com
  *
  */
 @Service

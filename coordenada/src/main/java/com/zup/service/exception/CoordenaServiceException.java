@@ -5,6 +5,7 @@ package com.zup.service.exception;
 
 /**
  * @author Éderson Gervásio
+ * 		edersongervasiosilva@gmail.com
  *
  */
 public class CoordenaServiceException extends Exception {
