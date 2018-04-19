@@ -1,11 +1,5 @@
 # Desafio Zup
 
-1) Construa um serviço para cadastrar pontos de interesse, com 3 atributos: Nome do POI, coordenada X (inteiro não negativo) e coordenada Y (inteiro não negativo). Os POIs devem ser armazenados em uma base de dados.
-
-2) Construa um serviço para listar todos os POIs cadastrados.
-
-3) Construa um serviço para listar POIs por proximidade. Este serviço receberá uma coordenada X e uma coordenada Y, especificando um ponto de referência, bem como uma distância máxima (d-max) em metros. O serviço deverá retornar todos os POIs da base de dados que estejam a uma distância menor ou igual a d-max a partir do ponto de referência.
-
 # Tecnologias Utilizadas
 
 * Spring Boot
