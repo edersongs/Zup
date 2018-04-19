@@ -29,33 +29,37 @@ Para o build da aplicação, execute a Classe **CoordenadaApplication** como um 
 
 É necessário passar um objeto **APPLICATION_JSON** no corpo da requisição com os atributos e valores de **"nome, posicaoX e posicaoY"**.
 
-* Exemplo
+```
+Exemplo
 `{
   "nome": "Novo Ponto",
   "posicaoX": 30,
   "posicaoY": 15
 }`
+```
+```
+Request `localhost:8080/coordenadas` Verbo http POST
 
-**request** `localhost:8080/coordenadas` Verbo http **POST**
-
-**response** Http Status 201 com objeto **APPLICATION_JSON** dos dados inseridos.
+Response Http Status 201 com objeto APPLICATION_JSON dos dados inseridos.
+```
 
 * **Listar todos pontos de interesse cadastrados**
+```
+Request `localhost:8080/coordenadas` Verbo htto  GET
 
-`**request** `localhost:8080/coordenadas` Verbo htto  **GET**
-
-**response** Http Status 200 com objeto **APPLICATION_JSON** com todos registros cadastrados na base`
-
+Response Http Status 200 com objeto APPLICATION_JSON com todos registros cadastrados na base
+```
 * **Retornar pontos de interesse em uma distância máxima a partir de xy** 
+```
+Request `localhost:8080/coordenadas/proximidades` Verbo htto  GET
 
-`**request** `localhost:8080/coordenadas/proximidades` Verbo htto  **GET**
+Parâmetros "posicaoX, posicaoY e distanciaMax" do tipo inteiro
 
-**Parâmetros** "posicaoX, posicaoY e distanciaMax" do tipo inteiro
-
-**response** Http Status 200 com objeto **APPLICATION_JSON** com todos os pontos de interesse são menores ou iguais a distância máxima a partir de xy.`
-
-* Exemplo via browser `http://localhost:8080/coordenadas/proximidades/20/10/10`
-
+Response Http Status 200 com objeto APPLICATION_JSON com todos os pontos de interesse são menores ou iguais a distância máxima a partir de xy.
+```
+```
+Exemplo via browser `http://localhost:8080/coordenadas/proximidades/20/10/10`
+```
 # Testes Unitários
 
 Existe 3 classes de teste no projeto para cada operação
