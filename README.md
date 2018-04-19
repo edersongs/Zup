@@ -21,7 +21,9 @@ Para usar e testar esse projeto, não é necessário nenhum tipo de instalação
 Foi utilizado para os testes dos serviços além dos testes unitários a ferramenta Postman https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop
 
 # Build do aplicativo 
-Para o build da aplicação, execute a Classe **CoordenadaApplication** como um Java Application, esse processo irá disponibilizar o aplicativo a um servidor Tomcat embarcado e já são cadastrados automaticamente alguns pontos padrão. (Pontos descritos no desafio) 
+* Para o build da aplicação, após fazer o clone do projeto e importar em sua IDE de preferência, execute a Classe **CoordenadaApplication** como um Java Application, esse processo irá disponibilizar o aplicativo a um servidor Tomcat embarcado e já são cadastrados automaticamente alguns pontos padrão. (Pontos descritos no desafio) 
+
+* Caso desejar fazer o build via linha de comando com maven, execute a instrução **mvn spring-boot:run** dentro do diretório raiz do aplicativo que é coordenada
 
 # Testes dos End-Points pelo Postman ou via browser
 
