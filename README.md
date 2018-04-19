@@ -38,25 +38,28 @@ Exemplo
 }
 ```
 
-**Verbo http  POST**
 ```
-Request localhost:8080/coordenadas Verbo
+Verbo http  POST
+
+Request localhost:8080/coordenadas
 
 Response Http Status 201 com objeto APPLICATION_JSON dos dados inseridos.
 ```
 
 * **Listar todos pontos de interesse cadastrados**
 
-**Verbo http  GET**
 ```
+Verbo http  GET
+
 Request localhost:8080/coordenadas
 
 Response Http Status 200 com objeto APPLICATION_JSON com todos registros cadastrados na base
 ```
 * **Retornar pontos de interesse em uma distância máxima a partir de xy** 
 
-**Verbo http  GET**
 ```
+Verbo http  GET
+
 Request localhost:8080/coordenadas/proximidades
 
 Parâmetros "posicaoX, posicaoY e distanciaMax" do tipo inteiro
