@@ -22,7 +22,7 @@ Foi utilizado para os testes dos serviços além dos testes unitários a ferrame
 
 # Execução e Testes
 
-1. Para o build da aplicação, execute a Classe **CoordenadaApplication** como um Java Application, nesse processo já são cadastrados automaticamente alguns pontos padrão. (Pontos descritos no desafio)
+1. Para o build da aplicação, execute a Classe **CoordenadaApplication** como um Java Application, nesse processo irá disponibilizar o aplicativo a um servidor tomcat embarcado e já são cadastrados automaticamente alguns pontos padrão. (Pontos descritos no desafio)
  
 2. **Cadastrar Pontos de Interesse**
 
