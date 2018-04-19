@@ -23,13 +23,11 @@ Foi utilizado para os testes dos serviços além dos testes unitários a ferrame
 # Build do aplicativo 
 Para o build da aplicação, execute a Classe **CoordenadaApplication** como um Java Application, esse processo irá disponibilizar o aplicativo a um servidor Tomcat embarcado e já são cadastrados automaticamente alguns pontos padrão. (Pontos descritos no desafio) 
 
-
-
 # Testes dos End-Points pelo Postman ou via browser
+
 1 - **Cadastrar Pontos de Interesse**
 
-Execute uma requisição com verbo http **POST** para `localhost:8080/coordenadas`, esse recurso consome um **APPLICATION_JSON** e retorna um objeto **APPLICATION_JSON** do que foi inserido na base e um http status **201**. 
-Para execução desse recurso será necessário passar um objeto **APPLICATION_JSON** no corpo da requisição com os atributos e valores de **"nome, posicaoX e posicaoY"**. 
+É necessário passar um objeto **APPLICATION_JSON** no corpo da requisição com os atributos e valores de **"nome, posicaoX e posicaoY"**.
 
 * Exemplo
 `{
@@ -38,13 +36,23 @@ Para execução desse recurso será necessário passar um objeto **APPLICATION_J
   "posicaoY": 15
 }`
 
-3 - **Listar todos pontos de interesse cadastrados**
+**request** `localhost:8080/coordenadas` Verbo http **POST**
 
-Execute uma requisição com verbo http **GET** para `localhost:8080/coordenadas`
+**response** Http Status 201 com objeto **APPLICATION_JSON** dos dados inseridos.
+
+2 - **Listar todos pontos de interesse cadastrados**
+
+**request** `localhost:8080/coordenadas` Verbo htto  **GET**
+
+**response** Http Status 200 com objeto **APPLICATION_JSON** com todos registros cadastrados na base
 
 4 - **Retornar pontos de interesse em uma distância máxima a partir de xy** 
 
-Execute o recurso `localhost:8080/coordenadas/proximidades` com verbo http **GET**. Os parâmetros **"posicaoX, posicaoY e distanciaMax"** devem ser passados no Cabeçalho da requisição. 
+**request** `localhost:8080/coordenadas/proximidades` Verbo htto  **GET**
+
+**Parâmetros** "posicaoX, posicaoY e distanciaMax" do tipo inteiro
+
+**response** Http Status 200 com objeto **APPLICATION_JSON** com todos os pontos de interesse são menores ou iguais a distância máxima a partir de xy.
 
 * Exemplo via browser `http://localhost:8080/coordenadas/proximidades/20/10/10`
 
