@@ -31,11 +31,11 @@ Para o build da aplicação, execute a Classe **CoordenadaApplication** como um 
 
 ```
 Exemplo
-`{
+{
   "nome": "Novo Ponto",
   "posicaoX": 30,
   "posicaoY": 15
-}`
+}
 ```
 
 **Verbo http  POST**
