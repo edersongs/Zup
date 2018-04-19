@@ -25,7 +25,7 @@ Para o build da aplicação, execute a Classe **CoordenadaApplication** como um 
 
 # Testes dos End-Points pelo Postman ou via browser
 
-1 - **Cadastrar Pontos de Interesse**
+* **Cadastrar Pontos de Interesse**
 
 É necessário passar um objeto **APPLICATION_JSON** no corpo da requisição com os atributos e valores de **"nome, posicaoX e posicaoY"**.
 
@@ -40,19 +40,19 @@ Para o build da aplicação, execute a Classe **CoordenadaApplication** como um 
 
 **response** Http Status 201 com objeto **APPLICATION_JSON** dos dados inseridos.
 
-2 - **Listar todos pontos de interesse cadastrados**
+* **Listar todos pontos de interesse cadastrados**
 
-**request** `localhost:8080/coordenadas` Verbo htto  **GET**
+`**request** `localhost:8080/coordenadas` Verbo htto  **GET**
 
-**response** Http Status 200 com objeto **APPLICATION_JSON** com todos registros cadastrados na base
+**response** Http Status 200 com objeto **APPLICATION_JSON** com todos registros cadastrados na base`
 
-4 - **Retornar pontos de interesse em uma distância máxima a partir de xy** 
+* **Retornar pontos de interesse em uma distância máxima a partir de xy** 
 
-**request** `localhost:8080/coordenadas/proximidades` Verbo htto  **GET**
+`**request** `localhost:8080/coordenadas/proximidades` Verbo htto  **GET**
 
 **Parâmetros** "posicaoX, posicaoY e distanciaMax" do tipo inteiro
 
-**response** Http Status 200 com objeto **APPLICATION_JSON** com todos os pontos de interesse são menores ou iguais a distância máxima a partir de xy.
+**response** Http Status 200 com objeto **APPLICATION_JSON** com todos os pontos de interesse são menores ou iguais a distância máxima a partir de xy.`
 
 * Exemplo via browser `http://localhost:8080/coordenadas/proximidades/20/10/10`
 
@@ -60,11 +60,11 @@ Para o build da aplicação, execute a Classe **CoordenadaApplication** como um 
 
 Existe 3 classes de teste no projeto para cada operação
 
-1 - Classe ListarPontosInteresseCadastradoTest, lista todos pontos de interesse cadastradas.
+* Classe ListarPontosInteresseCadastradoTest, lista todos pontos de interesse cadastradas.
 
-2 - Classe ListarPontosInteresseProximidadeTest, lista os pontos de interesse por proximidade cadastrados que estejam a uma distância menor ou igual a d-max a partir do ponto de referência passado como parâmetro.
+* Classe ListarPontosInteresseProximidadeTest, lista os pontos de interesse por proximidade cadastrados que estejam a uma distância menor ou igual a d-max a partir do ponto de referência passado como parâmetro.
 
 Essa classe está com os parâmetros de posiçãoX, posiçãoY e distância fixos, caso desejar outros valores deve editar o parâmetro na classe antes de executar o teste.
 
-3 - Classe SalvarPontosInteresseTest responsável por cadastrar um novo ponto de interesse
+* Classe SalvarPontosInteresseTest responsável por cadastrar um novo ponto de interesse
 
