@@ -19,13 +19,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.zup.model.Coordenada;
 import com.zup.repository.RepositorioCoordenada;
+import com.zup.service.CoordenadaService;
 import com.zup.service.exception.CoordenaServiceException;
-import com.zup.service.interfaces.CoordenadaService;
 
 /**
  * @author Éderson Gervásio
- * 		   edersongervasiosilva@gmail.com
- *
+ *		   edersongervasiosilva@gmail.com
+ *  	   linkedin.com/in/edersongs
+ *  	   github.com/edersongs	
+ *  	   + 55 (34) 9 9272-2350
  */
 @RestController
 @RequestMapping(value="/coordenadas")
@@ -35,77 +37,52 @@ public class CoordenadaController {
 	@Autowired private CoordenadaService coordenadaService;
 	@Autowired private Coordenada coordenada;
 	
-	/**
-	 * 
-	 * 		Listar todas as coordenadas registradas.
-	 * 
-	 * 
-	 * @return
-	 */
 	@GetMapping
 	public ResponseEntity<List<Coordenada>> listarTodasCoordenadas() {
 		
-		return new ResponseEntity<List<Coordenada>>(repositorioCoordenada.findAll(), HttpStatus.OK);
+		return new ResponseEntity<List<Coordenada>>(
+				repositorioCoordenada.findAll(), HttpStatus.OK);
 	}
 	
 	/**
 	 * 
-	 *		Lista as coordenadas cadastradas que estão mais próximas de acordo com a distância informada.
+	 *	Solução para encontrar as coordenadas cadastradas 
+	 *	que estão mais próximas de acordo com a distância informada.
 	 *
-	 * 
-	 * @param posicaoX
-	 * @param posicaoY
-	 * @param distanciaMaxima
-	 * @return
-	 */
-	@GetMapping("/proximidades/{posicaoX}/{posicaoY}/{distanciaMaxima}")
-	public ResponseEntity<List<Coordenada>> listarPorProximidade(@PathVariable int posicaoX, @PathVariable int posicaoY, @PathVariable int distanciaMaxima) {
-		
-		List<Coordenada> pontoProximos = repositorioCoordenada.findAll()
-				.stream()
-				.filter(c -> coordenada.calcularDistanciaEntrePontos(posicaoX, c.getPosicaoX(), posicaoY, c.getPosicaoY()) <= distanciaMaxima)
-				.collect(Collectors.toList());
-		
-		return new ResponseEntity<List<Coordenada>>(pontoProximos, HttpStatus.OK);
-	}
-	
-	/**
-	 * 
-	 *		Solução para encontrar as coordenadas cadastradas que estão mais próximas, de acordo com a distância informada.
-	 *		Essa solução não realiza um findAll na base para realizar o cálculo das coordenadas como é realizado no método listarPorProximidade.
+	 *	Essa solução não realiza um findAll na base para realizar o cálculo da distância.
 	 * 
 	 * @param posicaoX
 	 * @param posicaoY
 	 * @param distanciaMax
 	 * @return
 	 */
-	@GetMapping("/proximidades2")
-	private List<Coordenada> getCoordenadasPorDistancia(int posicaoX, int posicaoY, int distanciaMax) {
+	@GetMapping("/proximidades/{posicaoX}/{posicaoY}/{distanciaMaxima}")
+	private List<Coordenada> pesquisarCoordenadasPelaDistancia(
+			@PathVariable int posicaoX, 
+			@PathVariable int posicaoY, 
+			@PathVariable int distanciaMaxima) {
 		
 		return repositorioCoordenada
-				.proximidade(coordenada.calcularValorMaximoPosicaoPorDistancia(posicaoX, distanciaMax),
-						coordenada.calcularValorMinimoPosicaoPorDistancia(posicaoX, distanciaMax),
-						coordenada.calcularValorMaximoPosicaoPorDistancia(posicaoY, distanciaMax),
-						coordenada.calcularValorMinimoPosicaoPorDistancia(posicaoY, distanciaMax))
+				.obtemProximidades(
+						coordenada.calcularValorMaximoParaPosicaoPelaDistancia(posicaoX, distanciaMaxima),
+						coordenada.calcularValorMinimo1ParaPosicaoPelaDistancia(posicaoX, distanciaMaxima),
+						coordenada.calcularValorMaximoParaPosicaoPelaDistancia(posicaoY, distanciaMaxima),
+						coordenada.calcularValorMinimo1ParaPosicaoPelaDistancia(posicaoY, distanciaMaxima))
 				.stream()
-				.filter(c -> coordenada.calcularDistanciaEntrePontos(posicaoX, c.getPosicaoX(), posicaoY,	c.getPosicaoY()) <= distanciaMax)
+				.filter(c 
+						-> coordenada.calcularDistanciaEntrePontos(
+								posicaoX, 
+								c.getPosicaoX(), 
+								posicaoY, 
+								c.getPosicaoY())
+						<= distanciaMaxima)
+				
 				.collect(Collectors.toList());
 	}
 	
-	/**
-	 * 	
-	 * 		Salvar pontos de interesse.
-	 * 
-	 * 
-	 * @param coordenada
-	 * @return
-	 * @throws CoordenaServiceException 
-	 */
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<?> salvarPontosInteresse(@RequestBody Coordenada coordenada) throws CoordenaServiceException {
 		
-		coordenadaService.salvarCoordenada(coordenada);
-		
-		return new ResponseEntity<>(HttpStatus.CREATED);
+		return new ResponseEntity<>(coordenadaService.salvarCoordenada(coordenada), HttpStatus.CREATED);
 	}
 }

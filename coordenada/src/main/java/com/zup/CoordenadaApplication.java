@@ -1,4 +1,4 @@
-package com.zup;
+ package com.zup;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -8,6 +8,13 @@ import org.springframework.context.annotation.Bean;
 import com.zup.model.Coordenada;
 import com.zup.repository.RepositorioCoordenada;
 
+/**
+ * @author Éderson Gervásio
+ *		   edersongervasiosilva@gmail.com
+ *  	   linkedin.com/in/edersongs
+ *  	   github.com/edersongs	
+ *  	   + 55 (34) 9 9272-2350
+ */
 @SpringBootApplication
 public class CoordenadaApplication {
 

@@ -5,8 +5,10 @@ package com.zup.model.dto;
 
 /**
  * @author Éderson Gervásio
- * 	      edersongervasiosilva@gmail.com
- *
+ *		   edersongervasiosilva@gmail.com
+ *  	   linkedin.com/in/edersongs
+ *  	   github.com/edersongs	
+ *  	   + 55 (34) 9 9272-2350
  */
 public class CoordenadaDTO {
 	

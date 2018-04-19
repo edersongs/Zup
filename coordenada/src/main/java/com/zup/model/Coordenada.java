@@ -7,17 +7,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.context.annotation.Configuration;
 
 /**
  * @author Éderson Gervásio
- * 		   edersongervasiosilva@gmail.com
- *
+ *		   edersongervasiosilva@gmail.com
+ *  	   linkedin.com/in/edersongs
+ *  	   github.com/edersongs	
+ *  	   + 55 (34) 9 9272-2350
  */
 @Entity
 @Configuration
@@ -26,16 +26,20 @@ public class Coordenada {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int codigo;
+	
 	@Min(value=0, message="Posicao X deve ser Positiva")
 	private int posicaoX;
+	
 	@Min(value=0, message="Posicao Y deve ser Positiva")
 	private int posicaoY;
+	
 	@NotBlank(message="Nome deve ser informado")
 	private String nome;
 	
 	public Coordenada(){}
 	
 	public Coordenada(String nome, int posicaoX, int posicaoY) {
+		
 		this.nome = nome;
 		this.posicaoX = posicaoX;
 		this.posicaoY = posicaoY;
@@ -47,18 +51,21 @@ public class Coordenada {
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
+	
 	public String getNome() {
 		return nome;
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
 	public int getPosicaoX() {
 		return posicaoX;
 	}
 	public void setPosicaoX(int posicaoX) {
 		this.posicaoX = posicaoX;
 	}
+	
 	public int getPosicaoY() {
 		return posicaoY;
 	}
@@ -78,30 +85,17 @@ public class Coordenada {
 	 * @return
 	 */
 	public double calcularDistanciaEntrePontos(int x1, int x2, int y1, int y2) {
+		
 		return Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2));
 	}
 	
-	/**
-	 * Nova solução para encontrar as cordenadas pela distância maxima.
-	 * Esse solução não faz um findAll direto na base.
-	 *  
-	 * @param posicao
-	 * @param distancia
-	 * @return
-	 */
-	public int calcularValorMaximoPosicaoPorDistancia(int posicao, int distancia) {
+	public int calcularValorMaximoParaPosicaoPelaDistancia(int posicao, int distancia) {
+		
 		return posicao + distancia;
 	}
 	
-	/**
-	 * Nova solução para encontrar as cordenadas pela distância maxima.
-	 * Esse solução não faz um findAll direto na base.
-	 *  
-	 * @param posicao
-	 * @param distancia
-	 * @return
-	 */
-	public int calcularValorMinimoPosicaoPorDistancia(int posicao, int distancia) {
+	public int calcularValorMinimo1ParaPosicaoPelaDistancia(int posicao, int distancia) {
+		
 		return posicao - distancia;
 	}
 }

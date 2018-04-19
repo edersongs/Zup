@@ -13,13 +13,14 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.zup.service.exception.CoordenaServiceException;
 
 /**
  * @author Éderson Gervásio
- * 		  edersongervasiosilva@gmail.com
- *
+ *		   edersongervasiosilva@gmail.com
+ *  	   linkedin.com/in/edersongs
+ *  	   github.com/edersongs	
+ *  	   + 55 (34) 9 9272-2350
  */
 @RestControllerAdvice
 public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
@@ -28,7 +29,12 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
 
     // Erro 500
 
-    @ExceptionHandler({CoordenaServiceException.class, NullPointerException.class, RuntimeException.class, IllegalArgumentException.class, IllegalStateException.class})
+    @ExceptionHandler({
+    	CoordenaServiceException.class, 
+    	NullPointerException.class, 
+    	RuntimeException.class, 
+    	IllegalArgumentException.class, 
+    	IllegalStateException.class})
     public ResponseEntity<Object> handleInternal(final Exception ex, final WebRequest request) {
 
     	 headers = new HttpHeaders();
@@ -44,19 +50,14 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
     	private String mensagemErro;
     	private int status;
     	private String pathDetalhe;
-    	private String causa;
     	private String tipoException;
     	private String stackTrace;
-    	@JsonIgnore
-    	private Exception exception;
 		
     	public Error(WebRequest request, int status, Exception exception) {
 
     		this.mensagemErro = exception.getMessage();
     		this.status = status;
     		this.pathDetalhe = request.toString();
-			this.exception = exception;
-			this.causa = exception.getCause() == null ? "Indefinido" : exception.getCause().toString();
 			this.tipoException = exception.getClass().getSimpleName();
 			this.stackTrace = ExceptionUtils.getStackTrace(exception);			
 		}
@@ -85,14 +86,6 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
 
 		public void setPathDetalhe(String pathDetalhe) {
 			this.pathDetalhe = pathDetalhe;
-		}
-
-		public String getCausa() {
-			return causa;
-		}
-
-		public void setCausa(String causa) {
-			this.causa = causa;
 		}
 
 		public String getTipoException() {

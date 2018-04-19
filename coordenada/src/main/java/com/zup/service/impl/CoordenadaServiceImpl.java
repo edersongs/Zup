@@ -1,20 +1,22 @@
 /**
  * 
  */
-package com.zup.service;
+package com.zup.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.zup.model.Coordenada;
 import com.zup.repository.RepositorioCoordenada;
+import com.zup.service.CoordenadaService;
 import com.zup.service.exception.CoordenaServiceException;
-import com.zup.service.interfaces.CoordenadaService;
 
 /**
  * @author Éderson Gervásio
- * 		edersongervasiosilva@gmail.com
- *
+ *		   edersongervasiosilva@gmail.com
+ *  	   linkedin.com/in/edersongs
+ *  	   github.com/edersongs	
+ *  	   + 55 (34) 9 9272-2350
  */
 @Service
 public class CoordenadaServiceImpl implements CoordenadaService {
@@ -22,9 +24,9 @@ public class CoordenadaServiceImpl implements CoordenadaService {
 	@Autowired private RepositorioCoordenada repositorioCoordenada;
 	
 	@Override
-	public void salvarCoordenada(Coordenada coordenada) throws CoordenaServiceException {
+	public Coordenada salvarCoordenada(Coordenada coordenada) throws CoordenaServiceException {
 		
-		repositorioCoordenada.save(coordenada);
+		return repositorioCoordenada.save(coordenada);
 		
 	}
 }
