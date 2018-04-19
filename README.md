@@ -73,11 +73,10 @@ Exemplo via browser http://localhost:8080/coordenadas/proximidades/20/10/10
 
 Existe 3 classes de teste no projeto para cada operação
 
-* Classe ListarPontosInteresseCadastradoTest, lista todos pontos de interesse cadastradas.
+1 - Classe ListarPontosInteresseCadastradoTest, lista todos pontos de interesse cadastradas.
 
-* Classe ListarPontosInteresseProximidadeTest, lista os pontos de interesse por proximidade cadastrados que estejam a uma distância menor ou igual a d-max a partir do ponto de referência passado como parâmetro.
+2 - Classe ListarPontosInteresseProximidadeTest, lista os pontos de interesse por proximidade cadastrados que estejam a uma distância menor ou igual a d-max a partir do ponto de referência passado como parâmetro.
 
-Essa classe está com os parâmetros de posiçãoX, posiçãoY e distância fixos, caso desejar outros valores deve editar o parâmetro na classe antes de executar o teste.
+3 - Classe SalvarPontosInteresseTest responsável por cadastrar um novo ponto de interesse
 
-* Classe SalvarPontosInteresseTest responsável por cadastrar um novo ponto de interesse
-
+Os itens 2 e 3 está com os parâmetros de posiçãoX, posiçãoY e distância fixos, caso desejar testar outros valores deve editar o parâmetro nas classes antes de executar o teste.
