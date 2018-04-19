@@ -8,6 +8,10 @@
 * Java 8
 * Maven
 
+# Introdução
+
+Para usar e testar esse projeto,não é necessário nenhum tipo de instalação terceira, o projeto usa um banco embarcado configurado para recriar sempre que a aplicação for construida.
+
 # Ferramenta para Testes
 
 Foi utilizado para os testes dos serviços além dos testes unitários a ferramenta Postman https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop
