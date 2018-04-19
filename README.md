@@ -1,6 +1,6 @@
 # Introdução
 
-Para usar e testar esse projeto, não é necessário nenhum tipo de instalação terceira, o projeto usa um banco embarcado configurado para ser recriado sempre que a aplicação for construída, o mesmo ocorre para criação das tabelas. Essa escolha foi usada para deixar a construção e execução do aplicativo de forma mais simples para avaliação, sem a necessidade de instalações local como banco de dados, servidor de aplicação para testar o aplicativo.
+Projeto criado com nome de coordenada, para usar e testar esse projeto, não é necessário nenhum tipo de instalação terceira, o projeto usa um banco embarcado configurado para ser recriado sempre que a aplicação for construída, o mesmo ocorre para criação das tabelas. Essa escolha foi usada para deixar a construção e execução do aplicativo de forma mais simples para avaliação, sem a necessidade de instalações local como banco de dados, servidor de aplicação para testar o aplicativo.
 
 # Tecnologias Utilizadas
 
