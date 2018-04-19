@@ -1,11 +1,5 @@
 # Desafio Zup
 
-1) Construa um serviço para cadastrar pontos de interesse, com 3 atributos: Nome do POI, coordenada X (inteiro não negativo) e coordenada Y (inteiro não negativo). Os POIs devem ser armazenados em uma base de dados.
-
-2) Construa um serviço para listar todos os POIs cadastrados.
-
-3) Construa um serviço para listar POIs por proximidade. Este serviço receberá uma coordenada X e uma coordenada Y, especificando um ponto de referência, bem como uma distância máxima (d-max) em metros. O serviço deverá retornar todos os POIs da base de dados que estejam a uma distância menor ou igual a d-max a partir do ponto de referência.
-
 # Tecnologias Utilizadas
 
 * Spring Boot
@@ -14,20 +8,35 @@
 * Java 8
 * Maven
 
+# Introdução
+
+Para usar e testar esse projeto, não é necessário nenhum tipo de instalação terceira, o projeto usa um banco embarcado configurado para recriar sempre que a aplicação for construida e a criação das tabelas é realizada durante o processo de construção do aplicativo atráves do flyway. 
+Assim como o banco o servidor tomcat usado com spring boot é embarcado, iniciando durante a construção da aplicação.
+
 # Ferramenta para Testes
 
-Foi utilizado para os testes dos serviços a ferramenta Postman https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop
+Foi utilizado para os testes dos serviços além dos testes unitários a ferramenta Postman https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop
 
-# Execução dos Testes
+# Execução e Testes
 
-1. Para o build da aplicação, execute a Classe **CoordenadaApplication** como um Java Application.
+1. Para o build da aplicação, execute a Classe **CoordenadaApplication** como um Java Application, nesse processo já são    cadastrados alguns pontos padrão. (Pontos descritos no desafio)
+ 
+2. Para cadastrar um ponto de interesse, execute uma requisição com verbo http **POST** para `localhost:8080/coordenadas`, esse recurso consome um **APPLICATION_JSON**. Para execução desse recurso será necessário passar um objeto **APPLICATION_JSON** no corpo da requisição com os valores de **"nome, posicaoX e posicaoY"** .
 
-2. (Extra) Caso deseje cadastrar todos os pontos descritos no desafio de uma só vez, execute o recurso `localhost:8080/api/salvarPadrao` com verbo http **GET**. Com isso todas Posições sitadas como exemplo no desafio serão cadastradas.
+4. Para listar todas as Coordenadas salvas, execute o recurso `localhost:8080/coordenadas`
 
-3. Para salvar Nome do POI, coordenadaX, coordenadaY e distância Máxima, execute o recurso `localhost:8080/api/salvar` com verbo http **POST**. Esse recurso consome um **APPLICATION_JSON** e recebe como parametro um objeto chamado Coordenada. Para execução desse recurso será necessário passar um **APPLICATION_JSON** no corpo da requisição com os valores de **"nome, posicaoX e posicaoY"** .
+5. Para retornar todas os pontos de interesse cadastrados que tenham uma distância menor ou igual a distância máxima. Execute o recurso `localhost:8080/coordenadas/proximidades` com verbo http **GET**. Os parâmetros **"posicaoX,posicaoY e distanciaMax"** devem ser passados no Cabeçalho da requisição. Exemplo desse recurso sendo chamado via browser http://localhost:8080/coordenadas/proximidades/20/10/10
 
-4. Para listar todas as Coordenadas salvas, execute o recurso `localhost:8080/api/listarCoordenadas`
+# Testes Unitários
 
-5. Para retornar todas as coordenadas cadastradas que tenham uma distância menor ou igual a distância máxima. Execute o recurso `localhost:8080/api/proximidades` com verbo http **GET**. Os parâmetros **"posicaoX,posicaoY e distanciaMax"** devem ser passados no Cabeçalho da requisição.
+Existe 3 classes no projeto para cada operação
 
-6. (Extra) Para obter o mesmo resultado do item **5** com uma nova abordagem, execute o recurso `localhost:8080/api/proximidades2` com verbo http **GET**
+1 - Classe ListarPontosInteresseCadastradoTest, lista todos pontos de interesse cadastradas.
+
+2 - Classe ListarPontosInteresseProximidadeTest, lista os pontos de interesse por proximidade cadastrados que estejam a uma distância menor ou igual a d-max a partir do ponto de referência passado como parâmetro.
+Essa classe está com os parâmetros de posiçãoX, posiçãoY e distância fixos, caso desejar outros valores deve editar o parâmetro na classe antes de executar o teste.
+
+3 - Classe SalvarPontosInteresseTest responsável por cadastrar um novos pontos de interesse
+
+
+
