@@ -10,13 +10,14 @@
 
 # Introdução
 
-Para usar e testar esse projeto,não é necessário nenhum tipo de instalação terceira, o projeto usa um banco embarcado configurado para recriar sempre que a aplicação for construida.
+Para usar e testar esse projeto, não é necessário nenhum tipo de instalação terceira, o projeto usa um banco embarcado configurado para recriar sempre que a aplicação for construida e a criação das tabelas é realizada durante o processo de construção do aplicativo atráves do flyway. 
+Assim como o banco o servidor tomcat usado com spring boot é embarcado, iniciando durante a construção da aplicação.
 
 # Ferramenta para Testes
 
 Foi utilizado para os testes dos serviços além dos testes unitários a ferramenta Postman https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop
 
-# Execução dos Testes
+# Execução e Testes
 
 1. Para o build da aplicação, execute a Classe **CoordenadaApplication** como um Java Application, nesse processo já são    cadastrados alguns pontos padrão. (Pontos descritos no desafio)
  
