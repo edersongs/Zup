@@ -38,27 +38,27 @@ Exemplo
 }`
 ```
 ```
-Request `localhost:8080/coordenadas` Verbo http POST
+Request localhost:8080/coordenadas Verbo http POST
 
 Response Http Status 201 com objeto APPLICATION_JSON dos dados inseridos.
 ```
 
 * **Listar todos pontos de interesse cadastrados**
 ```
-Request `localhost:8080/coordenadas` Verbo htto  GET
+Request localhost:8080/coordenadas Verbo htto  GET
 
 Response Http Status 200 com objeto APPLICATION_JSON com todos registros cadastrados na base
 ```
 * **Retornar pontos de interesse em uma distância máxima a partir de xy** 
 ```
-Request `localhost:8080/coordenadas/proximidades` Verbo htto  GET
+Request localhost:8080/coordenadas/proximidades Verbo htto  GET
 
 Parâmetros "posicaoX, posicaoY e distanciaMax" do tipo inteiro
 
 Response Http Status 200 com objeto APPLICATION_JSON com todos os pontos de interesse são menores ou iguais a distância máxima a partir de xy.
 ```
 ```
-Exemplo via browser `http://localhost:8080/coordenadas/proximidades/20/10/10`
+Exemplo via browser http://localhost:8080/coordenadas/proximidades/20/10/10
 ```
 # Testes Unitários
 
