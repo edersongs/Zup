@@ -82,3 +82,5 @@ Existe 3 classes de teste no projeto para cada operação, com o projeto importa
 3 - Classe SalvarPontosInteresseTest responsável por cadastrar um novo ponto de interesse
 
 Os itens 2 e 3 está com os parâmetros de posiçãoX, posiçãoY e distância fixos, caso desejar testar outros valores deve editar o parâmetro nas classes antes de executar o teste.
+
+**OBS:** Todos os testes são impressos em log os dados da requisição e resposta.
